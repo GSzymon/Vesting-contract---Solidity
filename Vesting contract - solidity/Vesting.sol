@@ -82,6 +82,14 @@ contract Vesting is Ownable, VestingModifiers, VestingEvents {
         emit ShowParticipantDetails(calculateAvailableTokensToClaim(), allocations[msg.sender].totalAllocation, allocations[msg.sender].withdrawnTokensAmount);
     }
 
+    function renounceOwnership() override public view onlyOwner {
+        revert("Can't recnounce ownership here");
+    }
+
+    function transferOwnership(address newOwner) override public view onlyOwner {
+        revert("Can't transfer ownership here");
+    }
+
     function calculateAvailableTokensToClaim() private view returns(uint) {
 
         if(allocations[msg.sender].totalAllocation == 0) {
